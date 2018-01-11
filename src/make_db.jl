@@ -32,7 +32,7 @@ end
 function parse_fasta(input_fasta, db::FragDB)
     reader = FASTA.Reader(GZip.open(input_fasta, "r"))
     for record in reader
-        seq_info = string(FASTA.identifier(record), " ", FASTA.description(record))
+        seq_info = string(FASTA.identifier(record), " ", input_fasta)
         for subseq in make_subseqs(record, db.l)
             add_fragment_to_db!(db, subseq, seq_info)
         end
