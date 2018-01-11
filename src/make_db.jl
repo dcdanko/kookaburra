@@ -1,5 +1,6 @@
 using ArgParse
 using BioSequences
+import GZip
 
 include("fragment_db.jl")
 
@@ -29,7 +30,7 @@ end
 
 
 function parse_fasta(input_fasta, db::FragDB)
-    reader = FASTA.Reader(open(input_fasta, "r"))
+    reader = FASTA.Reader(GZip.open(input_fasta, "r"))
     for record in reader
         seq_info = string(FASTA.identifier(record), " ", FASTA.description(record))
         for subseq in make_subseqs(record, db.l)
