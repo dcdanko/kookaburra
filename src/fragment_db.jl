@@ -27,7 +27,7 @@ end
 
 function hamming_dist(a::DNASequence, b::DNASequence) :: Int
     d = 0
-    for i in length(a)
+    for i in 1:length(a)
         d += a[i] != b[i] ? 1 : 0 
     end
     return d
